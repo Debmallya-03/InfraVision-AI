@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@keyframes colorShift {
+  0% { background: #00fff2; box-shadow: 0 0 5px #00fff2, 0 0 10px #00fff2; }
+  100% { background: #ffffff; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff; }
+}
