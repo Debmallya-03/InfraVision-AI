@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 const HeroContainer = styled(Box)({
   position: 'relative',
@@ -22,7 +23,7 @@ const HeroContent = styled(Box)({
   position: 'relative',
   zIndex: 1,
   maxWidth: '600px',
-  padding: '0 3%',
+  padding: '0 2%',
   textAlign: 'left',
   marginTop: '5%',
 });
@@ -53,17 +54,18 @@ const HeroButton = styled(Button)({
 });
 
 function Hero() {
+  const navigate = useNavigate();
   return (
     <HeroContainer>
       <HeroContent>
         <Typography variant="h1" component="h1" gutterBottom sx={{
-          fontSize: { xs: '2.5rem', md: '3.5rem' },
+          fontSize: { xs: '2rem', md: '3rem' },
           fontWeight: 700,
           marginBottom: '1.5rem',
           lineHeight: 1.2,
           textShadow: '0 2px 4px rgba(0,0,0,0.5)' // Added for better text visibility
         }}>
-          Unlock the Future of
+          Scan. Detect. Prevent
         </Typography>
         <Typography variant="h2" component="h2" sx={{
           fontSize: { xs: '1.3rem', md: '1.8rem' },
@@ -72,10 +74,10 @@ function Hero() {
           lineHeight: 1.4,
           textShadow: '0 2px 4px rgba(0,0,0,0.5)' // Added for better text visibility
         }}>
-          <strong>InfraScan AI</strong> harnesses the power of cutting-edge technology to revolutionize infrastructure
+          <strong>InfraVision AI</strong> harnesses the power of cutting-edge technology to revolutionize infrastructure
         </Typography>
         <Box>
-          <HeroButton variant="contained">Explore Now</HeroButton>
+          <HeroButton variant="contained" onClick={() => navigate('./landing_page/SignIn')}>Explore Now</HeroButton>
           <HeroButton variant="outlined">Learn More</HeroButton>
         </Box>
       </HeroContent>

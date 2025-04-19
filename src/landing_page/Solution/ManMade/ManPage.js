@@ -5,6 +5,7 @@ import Detection from './Detection';
 
 function ManPage() {
     return (  
+        
         <>
            
            <Hero />

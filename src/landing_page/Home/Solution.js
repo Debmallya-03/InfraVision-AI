@@ -42,7 +42,7 @@ const Solution = () => {
               mb: 3,
               fontSize: 15
             }}>
-              DisAid integrates data through AI and Big Data analytics
+              InfraVision AI integrates data through AI and Big Data analytics
             </Typography>
 
             <Button

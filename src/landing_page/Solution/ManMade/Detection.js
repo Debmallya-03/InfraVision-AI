@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography, Card, CardContent } from "@mui/material";
+import { Box, Typography, Card, CardContent } from "@mui/material";
 import { Warning, Layers, Home, AccountBalance, Vibration, Report } from "@mui/icons-material";
 
 const detectionData = [
@@ -72,9 +72,26 @@ const Detection = () => {
       <Typography variant="body1" sx={{ color: "gray", marginBottom: "30px" }}>
         Our AI system can detect multiple types of structural issues with high accuracy
       </Typography>
-      <Grid container spacing={3} justifyContent="center">
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: '20px',
+        }}
+      >
         {detectionData.map((item, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Box
+            key={index}
+            sx={{
+              flexBasis: 'calc(33% - 20px)',
+              maxWidth: 'calc(33% - 20px)',
+              minWidth: '280px',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
             <Card sx={{ padding: "20px", textAlign: "left", height: "100%" }}>
               <CardContent>
                 <Typography variant="h5" fontWeight="bold">
@@ -92,9 +109,9 @@ const Detection = () => {
                 </ul>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

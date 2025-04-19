@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Typography, Card, CircularProgress } from "@mui/material";
+import { Box, Button, Typography, Card, CircularProgress, Dialog, DialogActions, DialogContent } from "@mui/material";
 import { CameraAlt, CloudUpload, ArrowBack } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,8 @@ const Scanning = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [aiResponse, setAiResponse] = useState(null);
+  const [openAlert, setOpenAlert] = useState(false); // State to control the popup visibility
+  const [openResponse, setOpenResponse] = useState(false); // State to show the AI response popup
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -149,6 +151,17 @@ const Scanning = () => {
     }
 
     doc.save("ai_analysis_report.pdf");
+  };
+
+  const handleCloseAlert = () => {
+    setOpenAlert(false); // Close the alert box
+    setTimeout(() => {
+      setOpenResponse(true); // Show AI response after 2 seconds
+    }, 2000);
+  };
+
+  const handleCloseResponse = () => {
+    setOpenResponse(false); // Close AI response box
   };
 
   return (
@@ -293,7 +306,7 @@ const Scanning = () => {
                 </Box>
               </Box>
 
-              {/* PDF Download Button - Now properly positioned */}
+              {/* PDF Download Button */}
               <Box sx={{ 
                 width: "100%", 
                 display: "flex", 
@@ -319,23 +332,48 @@ const Scanning = () => {
                     textTransform: "none",
                     boxShadow: "0 2px 8px rgba(3, 218, 198, 0.3)",
                     "&:hover": {
-                      bgcolor: "#00C9B6",
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 4px 12px rgba(3, 218, 198, 0.4)"
+                      bgcolor: "#00bfae",
                     },
-                    transition: "all 0.2s ease",
-                    width: { xs: "100%", sm: "auto" },
-                    minWidth: "220px"
                   }}
                   onClick={generatePDF}
                 >
-                  Download PDF Report
+                  Download Report as PDF
                 </Button>
               </Box>
             </>
           )}
         </Card>
       </motion.div>
+
+      {/* Alert Popup */}
+      <Dialog open={openAlert} onClose={handleCloseAlert}>
+        <DialogContent>
+          <Typography variant="h6">Structural Risk Alert</Typography>
+          <Typography variant="body2">
+            AI has detected a risk in the scanned infrastructure. Proceed for detailed analysis.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseAlert} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* AI Response Popup */}
+      <Dialog open={openResponse} onClose={handleCloseResponse}>
+        <DialogContent>
+          <Typography variant="h6">AI Response</Typography>
+          <Typography variant="body2">
+            {aiResponse || "Analysis Failed"}
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseResponse} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

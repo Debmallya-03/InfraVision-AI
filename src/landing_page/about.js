@@ -9,19 +9,35 @@ const About = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        backgroundColor: 'black',
+        backgroundImage: 'url(/media/images/das.png)',  // Background image
+        backgroundSize: 'cover',  // Ensure the image covers the entire screen
+        backgroundPosition: 'center',  // Center the image
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        p: 3,
+        position: 'relative',
       }}
     >
-      <Container maxWidth="md">
+      <Box
+        sx={{
+          position: 'absolute',  // Overlay the content above the background
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Black transparent overlay
+          zIndex: 1,  // Ensure overlay is above the background
+        }}
+      />
+
+      <Container
+        maxWidth="md"
+        sx={{ zIndex: 2 }}  // Ensure content is above overlay
+      >
         <Box
           sx={{
             color: 'white',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
             padding: 3,
             borderRadius: 2,
           }}
@@ -37,18 +53,23 @@ const About = () => {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               display: 'inline-block',
+              animation: 'textAnimation 5s infinite',  // Infinite animation
             }}
           >
             About InfraScan AI
           </Typography>
 
-          <Typography variant="body1" sx={{ mb: 4 }}>
+          <Typography
+            variant="body1"
+            sx={{
+              mb: 4,
+              animation: 'fadeIn 3s ease-in-out infinite',  // Fade-in text animation
+            }}
+          >
             InfraScan AI is an innovative AI-powered mobile-first platform designed to revolutionize infrastructure inspection. By leveraging advanced computer vision technology, it allows users to scan and detect damage in structures, such as buildings, bridges, and roads, directly through their mobile devices.
           </Typography>
 
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-            
-
             <Button
               variant="outlined"
               sx={{
