@@ -3,6 +3,7 @@ import { Box, Button, Typography, Card, CircularProgress } from "@mui/material";
 import { CameraAlt, CloudUpload, ArrowBack } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { jsPDF } from "jspdf";
 
 const Scanning = () => {
   const navigate = useNavigate();
@@ -118,6 +119,38 @@ const Scanning = () => {
     };
   };
 
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.setFont("Helvetica", "normal");
+    doc.text("AI Analysis Report", 20, 20);
+
+    const margin = 20;
+    const pageWidth = doc.internal.pageSize.width;
+    const textWidth = pageWidth - 2 * margin;
+    const lineHeight = 10;
+
+    let yPosition = 30;
+
+    if (aiResponse) {
+      const responseText = aiResponse.map((line) => line.props.children).join("\n");
+      const wrappedText = doc.splitTextToSize(responseText, textWidth);
+
+      wrappedText.forEach((line) => {
+        doc.text(line, margin, yPosition);
+        yPosition += lineHeight;
+
+        if (yPosition > doc.internal.pageSize.height - 20) {
+          doc.addPage();
+          yPosition = 20;
+        }
+      });
+    } else {
+      doc.text("No AI response to display.", margin, yPosition);
+    }
+
+    doc.save("ai_analysis_report.pdf");
+  };
+
   return (
     <Box
       sx={{
@@ -143,10 +176,10 @@ const Scanning = () => {
             boxShadow: 5,
             background: "#fff",
             display: selectedImage ? "flex" : "block",
+            flexDirection: selectedImage ? "column" : "block",
             gap: 2,
           }}
         >
-          {/* Back Button */}
           <ArrowBack
             sx={{
               cursor: "pointer",
@@ -217,38 +250,87 @@ const Scanning = () => {
             </>
           ) : (
             <>
-              {/* Left Section: Image Preview */}
-              <Box sx={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <img
-                  src={selectedImage}
-                  alt="Uploaded Structure"
-                  style={{ maxWidth: "100%", height: "auto", borderRadius: 8 }}
-                />
-                <Button
-                  variant="outlined"
-                  sx={{ mt: 2 }}
-                  onClick={() => setSelectedImage(null)}
-                >
-                  Upload Another
-                </Button>
+              <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 2 }}>
+                {/* Left Section: Image Preview */}
+                <Box sx={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <img
+                    src={selectedImage}
+                    alt="Uploaded Structure"
+                    style={{ maxWidth: "100%", height: "auto", borderRadius: 8 }}
+                  />
+                  <Button
+                    variant="outlined"
+                    sx={{ mt: 2, width: "100%" }}
+                    onClick={() => setSelectedImage(null)}
+                  >
+                    Upload Another
+                  </Button>
+                </Box>
+
+                {/* Right Section: AI Analysis */}
+                <Box sx={{ 
+                  flex: 1, 
+                  textAlign: "left", 
+                  p: 2, 
+                  backgroundColor: "#f5f5f5", 
+                  borderRadius: 2, 
+                  maxHeight: "400px", 
+                  overflowY: "auto" 
+                }}>
+                  <Typography variant="h6" fontWeight="bold">
+                    AI Analysis
+                  </Typography>
+                  {loading ? (
+                    <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+                      <CircularProgress size={20} />
+                      <Typography variant="body2" ml={2}>
+                        Analyzing...
+                      </Typography>
+                    </Box>
+                  ) : (
+                    aiResponse || <Typography variant="body2">No analysis yet.</Typography>
+                  )}
+                </Box>
               </Box>
 
-              {/* Right Section: AI Analysis */}
-              <Box sx={{ flex: 1, textAlign: "left", p: 2, backgroundColor: "#f5f5f5", borderRadius: 2, maxHeight: "300px", overflowY: "auto" }}>
-                <Typography variant="h6" fontWeight="bold">
-                  AI Analysis
-                </Typography>
-
-                {loading ? (
-                  <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                    <CircularProgress size={20} />
-                    <Typography variant="body2" ml={2}>
-                      Analyzing...
-                    </Typography>
-                  </Box>
-                ) : (
-                  aiResponse || <Typography variant="body2">No analysis yet.</Typography>
-                )}
+              {/* PDF Download Button - Now properly positioned */}
+              <Box sx={{ 
+                width: "100%", 
+                display: "flex", 
+                justifyContent: "center",
+                mt: 2
+              }}>
+                <Button
+                  variant="contained"
+                  startIcon={
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M19 9H15V3H9V9H5L12 16L19 9Z" fill="currentColor"/>
+                      <path d="M5 18V20H19V18H5Z" fill="currentColor"/>
+                    </svg>
+                  }
+                  sx={{
+                    bgcolor: "#03DAC6",
+                    color: "#121212",
+                    px: 3,
+                    py: 1.5,
+                    borderRadius: "8px",
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                    textTransform: "none",
+                    boxShadow: "0 2px 8px rgba(3, 218, 198, 0.3)",
+                    "&:hover": {
+                      bgcolor: "#00C9B6",
+                      transform: "translateY(-2px)",
+                      boxShadow: "0 4px 12px rgba(3, 218, 198, 0.4)"
+                    },
+                    transition: "all 0.2s ease",
+                    width: { xs: "100%", sm: "auto" },
+                    minWidth: "220px"
+                  }}
+                  onClick={generatePDF}
+                >
+                  Download PDF Report
+                </Button>
               </Box>
             </>
           )}

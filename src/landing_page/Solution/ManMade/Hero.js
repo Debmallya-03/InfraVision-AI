@@ -84,7 +84,7 @@ const Hero = () => {
             color="error"
             endIcon={<ArrowForwardIcon />}
             sx={{ textTransform: "none", fontSize: "16px", padding: "10px 20px" }}
-            onClick={() => navigate("./landing_page/Solution/ManMade/scanning_page/scanning")}
+            onClick={() => navigate("/landing_page/Solution/ManMade/scanning_page/scanning")}
           >
             Get Started
           </Button>

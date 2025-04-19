@@ -7,6 +7,8 @@ import HomePage from "./landing_page/Home/HomePage";
 import Navbar from "./landing_page/Navbar";
 import ManPage from "./landing_page/Solution/ManMade/ManPage"; // ✅ Import ManPage
 import Scanning from "./landing_page/Solution/ManMade/scanning_page/scanning";
+import ContactUs from "./landing_page/contact";
+import About from "./landing_page/about";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,6 +19,8 @@ root.render(
       
       <Route path="/landing_page/Solution/ManMade/ManPage" element={<ManPage />} />
       <Route path="/landing_page/Solution/ManMade/scanning_page/scanning" element={<Scanning />} /> {/* ✅ Fixed Route */}
+      <Route path="/landing_page/contact.js" element={<ContactUs/>} />
+      <Route path="/landing_page/about.js" element={<About/>} />
     </Routes>
   </BrowserRouter>
 );
