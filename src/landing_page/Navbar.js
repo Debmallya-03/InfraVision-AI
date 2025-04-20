@@ -60,12 +60,12 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: 'flex' }}>
             <NavButton component={Link} to="/">Home</NavButton>
             <NavButton component={Link} to="/landing_page/about.js">About</NavButton>
-            <NavButton component={Link} to="/landing_page/Solution/ManMade/ManPage">AI Detector</NavButton>
+            
             <NavButton component={Link} to="/landing_page/contact.js">Contact</NavButton>
           </Box>
 
-          <DemoButton component={Link} to="./landing_page/SignIn">
-            Sign IN
+          <DemoButton component={Link} to="./landing_page/SignUp">
+            Sign UP
           </DemoButton>
         </Toolbar>
       </Container>

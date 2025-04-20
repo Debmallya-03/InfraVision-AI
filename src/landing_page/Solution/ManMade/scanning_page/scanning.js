@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Typography, Card, CircularProgress, Dialog, DialogActions, DialogContent } from "@mui/material";
+import { Box, Button, Typography, Card, CircularProgress} from "@mui/material";
 import { CameraAlt, CloudUpload, ArrowBack } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +10,7 @@ const Scanning = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [aiResponse, setAiResponse] = useState(null);
-  const [openAlert, setOpenAlert] = useState(false); // State to control the popup visibility
-  const [openResponse, setOpenResponse] = useState(false); // State to show the AI response popup
+  
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -73,8 +72,6 @@ const Scanning = () => {
         return;
       }
 
-      console.log("Using API Key:", API_KEY);
-
       const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
       const requestBody = {
@@ -96,21 +93,27 @@ const Scanning = () => {
         });
 
         const data = await response.json();
-        console.log("AI Response:", data);
-
         setLoading(false);
 
         if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
           const resultText = data.candidates[0].content.parts[0].text;
-          const cleanedResponse = resultText.replace(/\*\*/g, "");
+          const cleaned = resultText.replace(/\*/g, "").trim();
 
-          setAiResponse(cleanedResponse.split("\n").map((line, index) => (
-            <Typography key={index} variant="body2" sx={{ mt: 1 }}>
-              {line}
-            </Typography>
-          )));
+          setAiResponse(
+            cleaned.split("\n").map((line, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+              >
+                <Typography variant="body2" sx={{ mb: 1, color: "#333" }}>
+                  {line}
+                </Typography>
+              </motion.div>
+            ))
+          );
         } else {
-          console.error("Unexpected API response:", data);
           setAiResponse("Analysis failed. Please try again.");
         }
       } catch (error) {
@@ -134,7 +137,7 @@ const Scanning = () => {
     let yPosition = 30;
 
     if (aiResponse) {
-      const responseText = aiResponse.map((line) => line.props.children).join("\n");
+      const responseText = aiResponse.map((line) => line.props.children.props.children).join("\n");
       const wrappedText = doc.splitTextToSize(responseText, textWidth);
 
       wrappedText.forEach((line) => {
@@ -153,17 +156,7 @@ const Scanning = () => {
     doc.save("ai_analysis_report.pdf");
   };
 
-  const handleCloseAlert = () => {
-    setOpenAlert(false); // Close the alert box
-    setTimeout(() => {
-      setOpenResponse(true); // Show AI response after 2 seconds
-    }, 2000);
-  };
-
-  const handleCloseResponse = () => {
-    setOpenResponse(false); // Close AI response box
-  };
-
+  
   return (
     <Box
       sx={{
@@ -262,118 +255,69 @@ const Scanning = () => {
               />
             </>
           ) : (
-            <>
-              <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 2 }}>
-                {/* Left Section: Image Preview */}
-                <Box sx={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <img
-                    src={selectedImage}
-                    alt="Uploaded Structure"
-                    style={{ maxWidth: "100%", height: "auto", borderRadius: 8 }}
-                  />
-                  <Button
-                    variant="outlined"
-                    sx={{ mt: 2, width: "100%" }}
-                    onClick={() => setSelectedImage(null)}
-                  >
-                    Upload Another
-                  </Button>
-                </Box>
+            <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 2 }}>
+              {/* Image Preview */}
+              <Box sx={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <img
+                  src={selectedImage}
+                  alt="Uploaded Structure"
+                  style={{ maxWidth: "100%", height: "auto", borderRadius: 8 }}
+                />
+                <Button variant="outlined" sx={{ mt: 2, width: "100%" }} onClick={() => setSelectedImage(null)}>
+                  Upload Another
+                </Button>
+              </Box>
 
-                {/* Right Section: AI Analysis */}
-                <Box sx={{ 
-                  flex: 1, 
-                  textAlign: "left", 
-                  p: 2, 
-                  backgroundColor: "#f5f5f5", 
-                  borderRadius: 2, 
-                  maxHeight: "400px", 
-                  overflowY: "auto" 
-                }}>
-                  <Typography variant="h6" fontWeight="bold">
-                    AI Analysis
+              {/* AI Analysis Result Box */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                style={{ flex: 1 }}
+              >
+
+                <Box
+                  sx={{
+                    background: "linear-gradient(to top, #fdfbfb, #ebedee)",
+                    p: 3,
+                    borderRadius: 4,
+                    maxHeight: "400px",
+                    overflowY: "auto",
+                    boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
+                    border: "1px solid #ddd",
+                    transition: "all 0.3s ease-in-out",
+                  }}
+                >
+                  <Typography variant="h6" sx={{ mb: 2, color: "#222" }}>
+                    AI Structural Analysis
                   </Typography>
+
                   {loading ? (
-                    <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                      <CircularProgress size={20} />
-                      <Typography variant="body2" ml={2}>
+                    <Box sx={{ textAlign: "center" }}>
+                      <CircularProgress />
+                      <Typography variant="body2" mt={1}>
                         Analyzing...
                       </Typography>
                     </Box>
                   ) : (
-                    aiResponse || <Typography variant="body2">No analysis yet.</Typography>
+                    <Box>{aiResponse}</Box>
+                  )}
+
+                  {!loading && aiResponse && (
+                    <Button
+                      variant="outlined"
+                      sx={{ mt: 2, borderColor: "#1976d2", color: "#1976d2" }}
+                      onClick={generatePDF}
+                    >
+                      Download Report
+                    </Button>
                   )}
                 </Box>
-              </Box>
-
-              {/* PDF Download Button */}
-              <Box sx={{ 
-                width: "100%", 
-                display: "flex", 
-                justifyContent: "center",
-                mt: 2
-              }}>
-                <Button
-                  variant="contained"
-                  startIcon={
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                      <path d="M19 9H15V3H9V9H5L12 16L19 9Z" fill="currentColor"/>
-                      <path d="M5 18V20H19V18H5Z" fill="currentColor"/>
-                    </svg>
-                  }
-                  sx={{
-                    bgcolor: "#03DAC6",
-                    color: "#121212",
-                    px: 3,
-                    py: 1.5,
-                    borderRadius: "8px",
-                    fontWeight: 600,
-                    fontSize: "0.875rem",
-                    textTransform: "none",
-                    boxShadow: "0 2px 8px rgba(3, 218, 198, 0.3)",
-                    "&:hover": {
-                      bgcolor: "#00bfae",
-                    },
-                  }}
-                  onClick={generatePDF}
-                >
-                  Download Report as PDF
-                </Button>
-              </Box>
-            </>
+              </motion.div>
+            </Box>
           )}
         </Card>
       </motion.div>
-
-      {/* Alert Popup */}
-      <Dialog open={openAlert} onClose={handleCloseAlert}>
-        <DialogContent>
-          <Typography variant="h6">Structural Risk Alert</Typography>
-          <Typography variant="body2">
-            AI has detected a risk in the scanned infrastructure. Proceed for detailed analysis.
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseAlert} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      {/* AI Response Popup */}
-      <Dialog open={openResponse} onClose={handleCloseResponse}>
-        <DialogContent>
-          <Typography variant="h6">AI Response</Typography>
-          <Typography variant="body2">
-            {aiResponse || "Analysis Failed"}
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseResponse} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Box>
   );
 };

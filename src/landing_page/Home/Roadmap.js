@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import { EffectCoverflow, Autoplay } from "swiper/modules";
 
-// Card Data
+
 const roadmapData = [
   {
     title: "Disaster",
@@ -56,7 +56,7 @@ const Roadmap = () => {
         Aligning with the UN Sustainable Development Goals
       </Typography>
 
-      {/* Swiper Slider for Auto-Rotating Cards */}
+      
       <Swiper
         effect="coverflow"
         grabCursor

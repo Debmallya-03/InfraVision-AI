@@ -113,7 +113,7 @@ User asked: ${userMessage.text}`
         </Typography>
       </motion.div>
 
-      {/* 🧊 Modern Overlay Messenger */}
+    
       {open && (
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
@@ -137,7 +137,7 @@ User asked: ${userMessage.text}`
             animation: 'bgShift 10s infinite alternate linear',
           }}
         >
-          {/* Header */}
+          
           <Box
             sx={{
               px: 2,
@@ -151,7 +151,7 @@ User asked: ${userMessage.text}`
             <Typography variant="h6">Infra Bot</Typography>
           </Box>
 
-          {/* Messages */}
+          
           <Box
             sx={{
               px: 2,
@@ -184,7 +184,7 @@ User asked: ${userMessage.text}`
             ))}
           </Box>
 
-          {/* Input */}
+          
           <Paper
             component="form"
             onSubmit={(e) => {
@@ -222,7 +222,7 @@ User asked: ${userMessage.text}`
         </motion.div>
       )}
 
-      {/* ✨ Gradient Animation */}
+    
       <style>
         {`
           @keyframes bgShift {

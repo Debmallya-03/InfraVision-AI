@@ -10,12 +10,11 @@ const Solution = () => {
       sx={{
         bgcolor: "#121212",
         color: "white",
-        py: 6, // Reduced padding
+        py: 6, 
       }}
     >
-      <Container maxWidth="md"> {/* Smaller container */}
+      <Container maxWidth="md"> 
         <Grid container spacing={4} alignItems="center">
-          {/* Left Section - Main Heading */}
           <Grid item xs={12} md={6}>
             <Typography variant="overline" sx={{ 
               color: "#03DAC6", 
@@ -27,7 +26,7 @@ const Solution = () => {
             </Typography>
 
             <Typography
-              variant="h4" // Smaller heading
+              variant="h4" 
               sx={{
                 fontWeight: 700,
                 mb: 2,
@@ -65,7 +64,7 @@ const Solution = () => {
             </Button>
           </Grid>
 
-          {/* Right Section - Features */}
+          
           <Grid item xs={12} md={6}>
             <Box sx={{ 
               bgcolor: "#1E1E1E",
@@ -80,7 +79,7 @@ const Solution = () => {
                 Disaster Components
               </Typography>
               
-              {/* Feature 1 */}
+              
               <Box display="flex" alignItems="center" mb={2} mt={2}>
                 <InsightsIcon sx={{ 
                   fontSize: 28, 
@@ -97,7 +96,7 @@ const Solution = () => {
                 </Box>
               </Box>
 
-              {/* Feature 2 */}
+              
               <Box display="flex" alignItems="center" mb={2}>
                 <GroupsIcon sx={{ 
                   fontSize: 28, 
@@ -114,7 +113,7 @@ const Solution = () => {
                 </Box>
               </Box>
 
-              {/* Feature 3 */}
+              
               <Box display="flex" alignItems="center">
                 <SecurityIcon sx={{ 
                   fontSize: 28, 

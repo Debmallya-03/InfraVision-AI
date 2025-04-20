@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Button, Grid, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const RiskContainer = styled(Box)({
   padding: '80px 5%',
@@ -54,7 +55,7 @@ const animationProps = {
     x: 0,
     transition: { duration: 0.6 }
   },
-  viewport: { once: false } // Triggers every time element enters viewport
+  viewport: { once: false } 
 };
 
 const rightAnimationProps = {
@@ -64,7 +65,7 @@ const rightAnimationProps = {
 
 function Risk() {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   return (
     <RiskContainer>
       {/* First Section */}
@@ -91,7 +92,7 @@ function Risk() {
                 <strong>InfraScan AI</strong> is your digital partner, using advanced computer vision and machine learning to detect and analyze the state of infrastructure with unprecedented accuracy.
               </Typography>
               <Box>
-                <StyledButton variant="contained" color="primary">
+                <StyledButton variant="contained" color="primary" onClick={() => navigate('/landing_page/Solution/ManMade/ManPage')}>
                   Get Started
                 </StyledButton>
                 <StyledButton variant="outlined" color="primary">

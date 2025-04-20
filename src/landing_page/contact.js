@@ -44,7 +44,7 @@ export default function ContactUs() {
       [name]: value,
     });
 
-    // Clear error when user types
+    
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -53,18 +53,18 @@ export default function ContactUs() {
     }
   };
 
-  // Validate form
+
   const validateForm = () => {
     let valid = true;
     const newErrors = { name: "", email: "", message: "" };
 
-    // Name validation
+    
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
       valid = false;
     }
 
-    // Email validation
+  
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
@@ -74,7 +74,7 @@ export default function ContactUs() {
       valid = false;
     }
 
-    // Message validation
+  
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
       valid = false;
@@ -84,20 +84,20 @@ export default function ContactUs() {
     return valid;
   };
 
-  // Handle form submission
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
       setIsSubmitting(true);
 
-      // Simulate API call
+      
       setTimeout(() => {
         console.log("Form submitted:", formData);
         setIsSubmitting(false);
         setShowSuccess(true);
 
-        // Reset form
+        
         setFormData({
           name: "",
           email: "",
@@ -108,7 +108,7 @@ export default function ContactUs() {
     }
   };
 
-  // Close success message
+  
   const handleCloseSuccess = () => {
     setShowSuccess(false);
   };
@@ -127,7 +127,7 @@ export default function ContactUs() {
         position: "relative",
       }}
     >
-      {/* Overlay */}
+     
       <Box
         sx={{
           position: "absolute",
@@ -135,7 +135,7 @@ export default function ContactUs() {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)", // Black transparent overlay
+          backgroundColor: "rgba(0, 0, 0, 0.5)", 
           zIndex: 1,
         }}
       ></Box>
@@ -143,7 +143,7 @@ export default function ContactUs() {
       <Container
         maxWidth="md"
         sx={{
-          zIndex: 2, // Ensure content stays above the overlay
+          zIndex: 2, 
         }}
       >
         <Paper

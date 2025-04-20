@@ -63,7 +63,7 @@ function Hero() {
           fontWeight: 700,
           marginBottom: '1.5rem',
           lineHeight: 1.2,
-          textShadow: '0 2px 4px rgba(0,0,0,0.5)' // Added for better text visibility
+          textShadow: '0 2px 4px rgba(0,0,0,0.5)' 
         }}>
           Scan. Detect. Prevent
         </Typography>
@@ -72,7 +72,7 @@ function Hero() {
           fontWeight: 400,
           marginBottom: '2rem',
           lineHeight: 1.4,
-          textShadow: '0 2px 4px rgba(0,0,0,0.5)' // Added for better text visibility
+          textShadow: '0 2px 4px rgba(0,0,0,0.5)' 
         }}>
           <strong>InfraVision AI</strong> harnesses the power of cutting-edge technology to revolutionize infrastructure
         </Typography>

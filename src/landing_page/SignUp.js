@@ -148,7 +148,7 @@ const SignUp = () => {
       <div className="login-container d-flex align-items-center justify-content-center">
         <div className="container">
           <div className="row g-0 align-items-center">
-            {/* Left side - Brand showcase (same as SignIn.js) */}
+            
             <div className="col-lg-6 d-none d-lg-block">
               <div className="left-content fade-in-left">
                 <div className="text-center mb-4">
@@ -329,7 +329,7 @@ const SignUp = () => {
 
                 
                 <div className="signuplink fade-in-up delay-4">
-                  Already have an account? <a href="/signin">Sign In</a>
+                  Already have an account? <a href="/landing_page/SignIn">Sign In</a>
                 </div>
               </div>
             </div>

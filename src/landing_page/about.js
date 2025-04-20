@@ -9,9 +9,9 @@ const About = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        backgroundImage: 'url(/media/images/das.png)',  // Background image
-        backgroundSize: 'cover',  // Ensure the image covers the entire screen
-        backgroundPosition: 'center',  // Center the image
+        backgroundImage: 'url(/media/images/das.png)',  
+        backgroundSize: 'cover',  
+        backgroundPosition: 'center',  
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -21,19 +21,19 @@ const About = () => {
     >
       <Box
         sx={{
-          position: 'absolute',  // Overlay the content above the background
+          position: 'absolute',  
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Black transparent overlay
-          zIndex: 1,  // Ensure overlay is above the background
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',  
+          zIndex: 1,  
         }}
       />
 
       <Container
         maxWidth="md"
-        sx={{ zIndex: 2 }}  // Ensure content is above overlay
+        sx={{ zIndex: 2 }}  
       >
         <Box
           sx={{
@@ -53,7 +53,7 @@ const About = () => {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               display: 'inline-block',
-              animation: 'textAnimation 5s infinite',  // Infinite animation
+              animation: 'textAnimation 5s infinite',
             }}
           >
             About InfraScan AI
@@ -63,7 +63,7 @@ const About = () => {
             variant="body1"
             sx={{
               mb: 4,
-              animation: 'fadeIn 3s ease-in-out infinite',  // Fade-in text animation
+              animation: 'fadeIn 3s ease-in-out infinite',  
             }}
           >
             InfraScan AI is an innovative AI-powered mobile-first platform designed to revolutionize infrastructure inspection. By leveraging advanced computer vision technology, it allows users to scan and detect damage in structures, such as buildings, bridges, and roads, directly through their mobile devices.
