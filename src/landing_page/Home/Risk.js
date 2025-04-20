@@ -89,7 +89,7 @@ function Risk() {
                 lineHeight: 1.6,
                 color: '#555'
               }}>
-                <strong>InfraScan AI</strong> is your digital partner, using advanced computer vision and machine learning to detect and analyze the state of infrastructure with unprecedented accuracy.
+                <strong>InfraVision AI</strong> is your digital partner, using advanced computer vision and machine learning to detect and analyze the state of infrastructure with unprecedented accuracy.
               </Typography>
               <Box>
                 <StyledButton variant="contained" color="primary" onClick={() => navigate('/landing_page/Solution/ManMade/ManPage')}>
@@ -139,7 +139,7 @@ function Risk() {
                 lineHeight: 1.6,
                 color: '#555'
               }}>
-                <strong>InfraScan AI's</strong> sophisticated algorithms and deep learning models analyze visual data to predict potential failures before they happen, saving time and resources.
+                <strong>InfraVision AI's</strong> sophisticated algorithms and deep learning models analyze visual data to predict potential failures before they happen, saving time and resources.
               </Typography>
             </ContentBox>
           </motion.div>

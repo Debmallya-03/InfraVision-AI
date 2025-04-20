@@ -4,7 +4,7 @@ import {styled } from '@mui/system';
 import { motion } from 'framer-motion';
 
 const TeamContainer = styled(Box)({
-  padding: '100px 5%',
+  padding: '100px 3%',
   backgroundColor: '#f8fafc',
   textAlign: 'center',
 });
@@ -121,7 +121,7 @@ function Emp() {
   return (
     <TeamContainer>
       <SectionTitle variant="h2" component="h2">
-        InfraScan AI: Revolutionizing Infrastructure
+        InfraVision AI: Revolutionizing Infrastructure
       </SectionTitle>
       
       <Grid container spacing={4} justifyContent="center">

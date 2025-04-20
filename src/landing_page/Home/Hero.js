@@ -74,7 +74,7 @@ function Hero() {
           lineHeight: 1.4,
           textShadow: '0 2px 4px rgba(0,0,0,0.5)' 
         }}>
-          <strong>InfraVision AI</strong> harnesses the power of cutting-edge technology to revolutionize infrastructure
+          <strong>InfraVision AI</strong> harnesses the power of cutting-edge technology to revolutionize infrastructure and save from ManMade Disasters
         </Typography>
         <Box>
           <HeroButton variant="contained" onClick={() => navigate('./landing_page/SignIn')}>Explore Now</HeroButton>

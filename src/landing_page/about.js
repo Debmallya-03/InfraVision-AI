@@ -56,7 +56,7 @@ const About = () => {
               animation: 'textAnimation 5s infinite',
             }}
           >
-            About InfraScan AI
+            About InfraVision AI
           </Typography>
 
           <Typography
@@ -66,7 +66,7 @@ const About = () => {
               animation: 'fadeIn 3s ease-in-out infinite',  
             }}
           >
-            InfraScan AI is an innovative AI-powered mobile-first platform designed to revolutionize infrastructure inspection. By leveraging advanced computer vision technology, it allows users to scan and detect damage in structures, such as buildings, bridges, and roads, directly through their mobile devices.
+            InfraVision AI is an innovative AI-powered mobile-first platform designed to revolutionize infrastructure inspection. By leveraging advanced computer vision technology, it allows users to scan and detect damage in structures, such as buildings, bridges, and roads, directly through their mobile devices.
           </Typography>
 
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>

@@ -121,7 +121,7 @@ function Res() {
                 lineHeight: 1.7,
                 color: '#4a5568'
               }}>
-                InfraScan AI's advanced algorithms analyze infrastructure data in real-time, delivering detailed 3D models with unprecedented accuracy.
+                InfraVision AI's advanced algorithms analyze infrastructure data in real-time, delivering detailed 3D models with unprecedented accuracy.
               </Typography>
               
               <Box>
