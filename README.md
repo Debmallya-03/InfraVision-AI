@@ -6,13 +6,17 @@ InfraVision AI is a mobile-first AI-powered tool that revolutionizes infrastruct
 
 ## 🚀 Features
 
-- **Real-Time Damage Detection**: Use your mobile camera to scan structures and detect cracks, corrosion, or deformation.
-- **AI-Powered Risk Analysis**: Google Gemini 1.5 Flash API analyzes and predicts infrastructure health status.
-- **3D Visualization**: Converts scan data into interactive 3D models of the structure.
-- **Safety Report Generator**: Automatically generates detailed safety reports for records or government use.
-- **Augmented Reality Mode (Coming Soon)**: AR view highlighting stress zones in infrastructure.
-- **Voice Input & Multilingual Support**: Speak to the app and get results in your preferred language.
-- **User Authentication**: Powered by Clerk for secure and seamless login.
+-Real-Time Damage Detection: Use your mobile camera to scan structures and detect cracks, corrosion, or deformation.
+
+-AI-Powered Risk Analysis: LLM Rage database with Pinecone Vector DB using Gemini 1.5 Flash analyzes and predicts infrastructure health status.
+
+-Safety Report Generator: Automatically generates detailed safety reports for records or government use.
+
+-Augmented Reality Mode (Coming Soon): AR view highlighting stress zones in infrastructure.
+
+-Voice Input & Multilingual Support: Speak to the app and get results in your preferred language.
+
+-User Authentication: Powered by Clerk for secure and seamless login.
 
 ---
 
@@ -29,9 +33,12 @@ To become the go-to AI platform for infrastructure health diagnostics, serving g
 ## 🧠 SWOT Analysis
 
 ### ✅ Strengths
-- Real-time AI scanning with Gemini 1.5
+- Real-time AI scanning with LLM Rage DB and Pinecone
+
 - Mobile-first inspection from anywhere
+
 - User-friendly UI & AR-ready interface
+
 - Generates official-grade safety reports
 
 ### ⚠️ Weaknesses
@@ -56,8 +63,7 @@ To become the go-to AI platform for infrastructure health diagnostics, serving g
 
 - **Frontend**: React.js, Material UI, CSS Modules
 - **Authentication**: Clerk.dev
-- **AI/ML**: Google Gemini 1.5 Flash API
-- **Visualization**: Three.js / 3D rendering libraries
+- **AI/ML**: Google Gemini 1.5 Flash Pinecone VectorDB Rage Database
 - **Hosting**: Netlify / Vercel (Frontend), Firebase (optional)
 
 ---
@@ -81,6 +87,7 @@ To become the go-to AI platform for infrastructure health diagnostics, serving g
 ├── .env                 # Environment variables 
 ├── package.json         # Project dependencies and scripts
 └── README.md            # Project documentation
+
 ```
 
 ---
@@ -90,7 +97,7 @@ To become the go-to AI platform for infrastructure health diagnostics, serving g
 ### ✅ Prerequisites
 
 - Node.js 18+
-- Clerk Project + API Keys
+- React Project + Rage Database 
 - (Optional) Google Gemini API Key for live scans
 
 ---
